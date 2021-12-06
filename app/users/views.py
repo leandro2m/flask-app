@@ -22,7 +22,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Thanks for registration!')
-        return redirect(url_for('users.registered'),user)
+        return redirect(url_for('users.login'))
     return render_template('register.html', form=form)
 
 
@@ -58,7 +58,7 @@ def login():
 
         user = User.query.filter_by(email=form.email.data).first()
 
-        if user.check_password(form.password.data) and user is not None:
+        if user is not None and user.check_password(form.password.data) :
             login_user(user)
             flash('Log in Success!')
             next = request.args.get('next')
