@@ -8,6 +8,8 @@ from flask_cors import CORS
 
 login_manager = LoginManager()
 
+from app.secrets_manager import get_secret
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'plkf124Fas4'
@@ -17,8 +19,10 @@ app.config['JWT_BLACKLIST_ENABLED'] = True
 # basedir = os.path.abspath(os.path.dirname(__file__))
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Pswd123$@db1.cdlikiuniwlk.sa-east-1.rds.amazonaws.com/db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://db:mysecret@db1.cdlikiuniwlk.sa-east-1.rds.amazonaws.com/db'
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mypassword@35.247.193.120/app-demo'
+
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 @app.before_first_request
